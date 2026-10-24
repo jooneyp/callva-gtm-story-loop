@@ -1,65 +1,6 @@
-# Callva GTM Story Loop — 실화 사연 재연 숏폼 루프
+# 이 레포는 합쳐졌습니다 → [jooneyp/callva-gtm-loop](https://github.com/jooneyp/callva-gtm-loop)
 
-**Product:** [콜바 Callva](https://callva.ai) — 전화의 목적을 끝까지 완수하는 AI 전화 에이전트.
-대상: 직원 없는 1인 전문직 사무소(변호사·변리사·세무사·노무사)와 소형 숙박(펜션·풀빌라·캠핑장·게스트하우스) 사장님.
+콜바(Callva)의 Clone Loop Day in Seoul 제출본은 **jooneyp/callva-gtm-loop** 입니다 (2026-10-24 17:30 제출).
+이 레포에 있던 단계별 스킬·회차 기록·벤치마크·스코어보드는 전부 그 레포로 옮겼습니다.
 
-**Loop in one line:** 커뮤니티에서 반응이 큰 *실제* "황당한 손님 전화" 사연을 찾아 → 원글 대화를 그대로 재연한 숏폼으로 만들고 → 유튜브 쇼츠·틱톡·인스타 릴스에 올린 뒤 → 24시간 지표로 Clone이 다음 사연·훅·마무리 문구의 비중을 다시 정한다. 하루 한 바퀴씩 돈다.
-
-> English: A daily GTM loop that turns *real*, high-engagement customer-call stories from Korean small-business communities into re-enacted short-form videos, publishes them on Shorts/TikTok/Reels, and lets Clone reallocate the next batch (stories, hooks, CTA lines) from 24h retention and lead data. Nothing in a story is invented; only the last 2–3 seconds mention Callva.
-
----
-
-## 7일 목표 (2026-10-25 ~ 2026-10-31 18:00 KST)
-
-| 구분 | 기본 목표 | 도전 목표 |
-|---|---|---|
-| 루프 운영 | 7회전 (하루 1회 판정, 회차 로그를 `runs/`에 커밋) | — |
-| 제작·게시 | 재연 숏폼 30편, 3개 플랫폼 게시 | — |
-| 도달 | 누적 조회 3만 | 10만 |
-| 사장님 리드 (문의·DM·광고 리드폼) | 10건 | 20건 |
-| 셀프 전환 | 앱 셀프가입 3곳 | 결제 1곳 |
-| 루프 개선 | 7일차 영상 평균 완주율이 1일차보다 +30% | +50% |
-
-리드 판정은 조회수가 아니라 **조회 1만 회당 사장님 리드 수**로 본다. 조회만 쫓으면 구경꾼만 는다.
-
-## 왜 이 루프인가 (우리 데이터)
-
-- 사장님 쪽 검색어는 바닥이다. "변호사 전화비서", "법률사무소 전화응대"는 네이버 월 20회(최저치)다. 검색광고로는 대표가 안 잡힌다.
-- 반대로 *통화 자체*는 먹힌다. 숙박 광고 2주(10/10~23) 동안 리드 28건 중 18건이 실제 통화를 들려주는 영상에서 나왔다(리드당 약 $26).
-- 사연 재연 숏폼은 일반인 피드에서 터진다. 벤치마크 13편의 조회수 중앙값은 187만, 참여율 중앙값은 1.46%였다(`benchmark/`).
-- 그래서 일반인이 끝까지 보는 사연으로 피드를 타고, 사장님은 "이 전화 내가 받는 건데"에서 멈추게 만든다.
-
-## 루프
-
-```
- ┌─ 1. 사연 수집 (Joe, 읽기만) ── 네이버 카페·네이트판·X·인스타에서 업종별 사연 후보
- │        ↓
- │  2. 사연 채점 (Clone) ── 추천·댓글·댓글 온도·"일반인도 공감하나"로 점수 → 상위 N개
- │        ↓
- │  3. 재연 대본 (Clone, 추출만) ── 원글 대화를 그대로 옮김. 지어내지 않음. 첫 0.5초 훅 대사 선정
- │        ↓
- │  4. 렌더 (Joe 서버) ── Remotion + Gemini TTS(대화 전체 1회 생성), Whisper 싱크 검사, vision 화면 검사
- │        ↓
- │  5. 게시 (Joe) ── 쇼츠·틱톡·릴스 동시 게시, 플랫폼당 하루 5편 이하, "실제 사연 재구성·AI 생성" 표기
- │        ↓
- │  6. 측정 (Joe) ── 24h: 2초 이탈·완주율·공유·댓글 / 리드: 리드폼·DM·셀프가입·결제 (UTM으로 영상·문구 단위 추적)
- │        ↓
- └─ 7. 판정 (Clone 제안 → Joe 적용) ── 상위 70% 확장 / 새 시도 30%, 하위 소재 폐기, 커뮤니티별 수집 비중 조정
-```
-
-## 누가 무엇을 판단하나
-
-| 누가 | 판단 | 주기 |
-|---|---|---|
-| 준영(사람) | 타깃 업종 우선순위, 광고비 상한, 브랜드 레드라인, 목소리·화면 품질 최종 판정 | 주 1회 + 호출 조건 |
-| Joe (서버 에이전트) | 수집·렌더·게시·지표 수집, 상한 안에서 광고 켜고 끄기, 30분 진행 보고 | 매일 |
-| Clone (m4max) | 사연 채점, 대본 추출, 훅·마무리 문구 변형, 지난 회차 결과를 읽고 다음 배분 제안 | 매 회차 |
-
-준영 호출 조건: 리드당 비용이 상한을 2일 연속 초과 / 부정 반응(브랜드·전문직 광고 규정) / 소재에 새 사실 주장이 필요할 때.
-
-## 레포 구성
-
-- `skills/` — 루프 각 단계의 실행 규칙 (Clone·Joe가 읽는 .md 스킬)
-- `runs/` — 회차별 로그: 무엇을 만들고 올렸고, 지표가 어땠고, 그래서 다음에 뭘 바꿨나
-- `benchmark/` — 사연·썰 숏폼 벤치마크 요약 (실측)
-- `GOALS.md` — 목표와 일일 스코어보드
+This repository was merged into **[jooneyp/callva-gtm-loop](https://github.com/jooneyp/callva-gtm-loop)**, Callva's submission for Clone Loop Day in Seoul.
